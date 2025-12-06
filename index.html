@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- Declares the document type as HTML5 -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Sets the character encoding so all characters display correctly -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Ensures compatibility mode for older browsers like Internet Explorer -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes the website responsive on mobile screens -->
+
+    <title>Kanban Board-Class Work</title>
+    <!-- Title displayed on browser tab -->
+
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Links external CSS file for styling -->
+
+    <!-- FONT AWESOME ICONS (Trash, Lock, Plus, etc.) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Font: Inter (modern UI font) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <!-- ==========================
+         BACKGROUND IFRAME (Smoke Animation)
+       ========================== -->
+
+    <div class="bg-wrapper">
+      <!-- Wrapper that positions the iframe behind the Kanban board -->
+
+      <iframe 
+        id="bg-iframe"
+        src="dist\index2.html"
+        aria-hidden="false"
+        scrolling="no">
+      </iframe>
+      <!-- 
+        The iframe loads animated background HTML (index2.html)
+        "scrolling=no" prevents scrollbars,
+        "aria-hidden=false" exposes it to screen readers (optional)
+      -->
+    </div>
+
+
+    <!-- ==========================
+         TOOLBOX / NAVBAR
+       ========================== -->
+
+    <div class="toolbox-cont">
+      <!-- Main top navigation bar containing filters and action buttons -->
+
+      <div class="brand-section">
+        <!-- Branding / title area -->
+        <h1 class="brand-title">
+          <i class="fas fa-tasks"></i>
+          <!-- Icon representing tasks -->
+
+          TaskFlow
+          <!-- Brand / project name -->
+        </h1>
+      </div>
+
+      <!-- ======== PRIORITY FILTER SECTION ======== -->
+      <div class="toolbox-priority-cont">
+        <span class="filter-label">Filter by Priority:</span>
+        <!-- Label for priority filters -->
+
+        <div class="color-filters">
+          <!-- Color filter circles to filter tickets by their priority color -->
+          <div class="lightpink color"></div>
+          <div class="lightgreen color"></div>
+          <div class="lightblue color"></div>
+          <div class="black color"></div>
+        </div>
+      </div>
+
+      <!-- ======== ACTION BUTTONS (Add, Delete) ======== -->
+      <div class="action-btn-cont">
+        <!-- Add new task button -->
+        <div class="add-btn" title="Add New Task">
+          <i class="fa-solid fa-plus"></i>
+          <!-- Plus icon -->
+
+          <span class="btn-text">Add Task</span>
+        </div>
+
+        <!-- Delete mode toggle button -->
+        <div class="remove-btn" title="Delete Mode">
+          <i class="fa-solid fa-trash"></i>
+          <!-- Trash icon -->
+
+          <span class="btn-text">Delete</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==========================
+         MAIN TICKET CONTAINER
+       ========================== -->
+
+    <div class="main-cont">
+      <!-- 
+        This container holds all dynamically created tickets.
+        Tickets are injected here via JavaScript.
+      -->
+
+      <!-- Example ticket structure for reference (NOT displayed) -->
+      <!--
+      <div class="ticket-cont">
+        <div class="ticket-color"></div>
+        <div class="ticket-id">1234567</div>
+        <div class="task-area">Random Task</div>
+        <div class="ticket-lock">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      </div>
+      -->
+    </div>
+
+
+    <!-- ==========================
+         MODAL FOR CREATING NEW TICKETS
+       ========================== -->
+
+    <div class="modal-cont">
+      <!-- Background modal popup for entering new task details -->
+
+      <div class="modal-header">
+        <!-- Section containing title and description -->
+        <h2>Create New Task</h2>
+        <p>Enter your task details and select a priority level</p>
+      </div>
+
+      <textarea
+        class="textArea-cont"
+        placeholder="Enter your task description..."
+      ></textarea>
+      <!-- Textarea where user writes task description -->
+
+
+      <!-- ======== PRIORITY SELECTOR ======== -->
+      <div class="priority-colors-container">
+        <span class="priority-label">Select Priority:</span>
+
+        <div class="priority-grid">
+          <!-- Each colored box selects a priority level -->
+
+          <div class="lightpink priority-color active" title="High Priority">
+            <span>H</span>
+          </div>
+
+          <div class="lightgreen priority-color" title="Medium Priority">
+            <span>M</span>
+          </div>
+
+          <div class="lightblue priority-color" title="Low Priority">
+            <span>L</span>
+          </div>
+
+          <div class="black priority-color" title="Critical">
+            <span>C</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <!-- Reminder that SHIFT creates the task -->
+          <small>Press <kbd>Shift</kbd> to create task</small>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==========================
+         SCRIPT FILES
+       ========================== -->
+
+    <script src="script.js"></script>
+    <!-- Your main JavaScript file -->
+
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <!-- External library used to generate unique ticket IDs -->
+
+  </body>
+</html>
